@@ -16,7 +16,7 @@ class CreateRatingRequestsTable extends Migration
         Schema::create('rating_requests', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('user_id');
-            $table->integer('status');
+            $table->integer('status')->default(1);
             $table->text('text');
             $table->string('photo_url');
             $table->timestamps();
