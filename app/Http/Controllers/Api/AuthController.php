@@ -47,7 +47,23 @@ class AuthController extends Controller
         'password' => Hash::make($data['password']),
       ])
 
-      return response(['message' => 'Success']);
+      return response(['success' => true] , 201);
+  }
+  public function createAtAdminUser(RegisterRequest $request)
+  {
+    
+    $data = $request->validated();
+  
+    User::create([
+        'first_name' => $data['first_name'],
+        'last_name' => $data['last_name'],
+        'role' => $data['role'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password']),
+      ])
+
+      return response(['success' => true] , 201);
+
   }
 
   /**
