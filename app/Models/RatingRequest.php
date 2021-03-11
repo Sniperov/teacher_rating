@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class RatingRequest extends Model
 {
@@ -24,5 +25,9 @@ class RatingRequest extends Model
   {
     $this->status = RatingRequest::STATUS_ACCEPTED;
     $this->update();
+  }
+  public function user()
+  {
+    return $this->belongsTo(User::class);
   }
 }
