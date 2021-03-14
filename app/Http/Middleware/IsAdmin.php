@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Middleware;
-namespace App\User;
 
 use Closure;
+use App\User;
 
 class IsAdmin
 {
