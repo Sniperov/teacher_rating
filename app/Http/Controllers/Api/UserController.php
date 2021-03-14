@@ -35,13 +35,13 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return response(['success' => $user ] , 201 );
+        return response($user, 201 );
 
     }
 
     public function getAllUsers()
     {
-        return response(['success' => User::all()] , 201);
+        return response(User::all() , 201);
     }
 
 }
