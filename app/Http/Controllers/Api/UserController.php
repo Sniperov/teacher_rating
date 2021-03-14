@@ -32,6 +32,15 @@ class UserController extends Controller
 
     }
 
+    
+    public function getUserById($id)
+    {
+        $user = User::findOrFail($id);
+
+        return response(['success' => $user ] , 201 );
+
+    }
+
     public function getAllUsers()
     {
         return response(['success' => User::all()] , 201);
