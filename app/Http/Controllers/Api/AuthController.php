@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UserRequest;
 
 class AuthController extends Controller
 {
@@ -49,11 +50,11 @@ class AuthController extends Controller
 
       return response(['success' => true] , 201);
   }
-  public function createAtAdminUser(RegisterRequest $request)
+  public function createAtAdminUser(UserRequest $request)
   {
-    
+
     $data = $request->validated();
-  
+
     User::create([
         'first_name' => $data['first_name'],
         'last_name' => $data['last_name'],

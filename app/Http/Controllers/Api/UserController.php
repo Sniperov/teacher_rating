@@ -9,8 +9,7 @@ use App\User;
 
 class UserController extends Controller
 {
-    
-    public function reditUser(UserRequest $request , $id)
+    public function editUser(UserRequest $request , $id)
     {
 
         $data = $request->validated();
@@ -32,7 +31,6 @@ class UserController extends Controller
 
     }
 
-    
     public function getUserById($id)
     {
         $user = User::findOrFail($id);
