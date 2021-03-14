@@ -6,17 +6,23 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    public function editUser(UserRequest $request , $id)
+    public function editUser(Request $request , $id)
     {
-
-        $data = $request->validated();
+        $data = $request->validate([
+            'first_name' => 'required|string|min:2',
+            'last_name' => 'required|string|min:2',
+            'email' => ['required','email', Rule::unique('users')->ignore($id, 'id'),],
+            'role' => 'required|numeric|min:2',
+            'password' => 'required|string|'
+        ]);
 
         $user = User::findOrFail($id);
 
-        $user->update($user->all());
+        $user->update($data);
 
         return response(['success' => true ] , 201 );
     }
