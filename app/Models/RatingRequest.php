@@ -21,7 +21,7 @@ class RatingRequest extends Model
     $this->update();
   }
 
-  public function accept($value='')
+  public function accept()
   {
     $this->status = RatingRequest::STATUS_ACCEPTED;
     $this->update();
