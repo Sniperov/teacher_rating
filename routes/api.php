@@ -1,21 +1,23 @@
 <?php
+use App\Http\Middleware\isAdmin;
+use App\Http\Middleware\isModerator;
 
 Route::group(['namespace'  => 'Api', 'prefix' => '/'], function () {
   Route::post('/login', 'AuthController@login');
   Route::post('/register', 'AuthController@registration');
-  
-  Route::middleware(['isModerator'])->group(function(){
+
+  Route::middleware(['auth'])->group(function(){
     Route::get('/profile', 'AuthController@me');
     Route::delete('/logout', 'AuthController@logout');
   });
 
-  Route::middleware(['isModerator'])->group(function(){
+  Route::middleware([isModerator::class])->group(function(){
     Route::get('requests', 'RatingRequestController@getRequests');
     Route::post('requests/{id}/accept', 'RatingRequestController@acceptRequest');
     Route::post('requests/{id}/reject', 'RatingRequestController@rejectRequest');
   });
 
-  Route::middleware(['isAdmin'])->group(function(){
+  Route::middleware([isAdmin::class])->group(function(){
     Route::post('users/create', 'AuthController@createAtAdminUser');
     Route::put('users/{id}/edit', 'UserController@editUser');
     Route::delete('users/{id}/delete', 'UserController@deleteUser');
