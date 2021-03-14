@@ -45,7 +45,7 @@ class AuthController extends Controller
         'role' => User::ROLE_TEACHER,
         'email' => $data['email'],
         'password' => Hash::make($data['password']),
-      ])
+      ]);
 
       return response(['success' => true] , 201);
   }
@@ -60,7 +60,7 @@ class AuthController extends Controller
         'role' => $data['role'],
         'email' => $data['email'],
         'password' => Hash::make($data['password']),
-      ])
+      ]);
 
       return response(['success' => true] , 201);
 
