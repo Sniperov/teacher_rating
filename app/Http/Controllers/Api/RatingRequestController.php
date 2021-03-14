@@ -25,4 +25,9 @@ class RatingRequestController extends Controller
 
       return response($requests, 200);
     }
+
+    public function createRequest()
+    {
+      // code...
+    }
 }
