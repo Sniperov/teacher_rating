@@ -1,5 +1,5 @@
 <?php
-use App\Http\Middleware\isAdmin;
+use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\isModerator;
 
 Route::group(['namespace'  => 'Api', 'prefix' => '/'], function () {
@@ -17,7 +17,7 @@ Route::group(['namespace'  => 'Api', 'prefix' => '/'], function () {
     Route::post('requests/{id}/reject', 'RatingRequestController@rejectRequest');
   });
 
-  Route::middleware([isAdmin::class])->group(function(){
+  Route::middleware([IsAdmin::class])->group(function(){
     Route::post('users/create', 'AuthController@createAtAdminUser');
     Route::put('users/{id}/edit', 'UserController@editUser');
     Route::delete('users/{id}/delete', 'UserController@deleteUser');

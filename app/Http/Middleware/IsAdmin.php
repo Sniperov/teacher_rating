@@ -19,8 +19,8 @@ class IsAdmin
         $role = auth()->user()->role;
 
         if ( $role !== User::ROLE_ADMIN)
-            return response(['error' = 'Forbidden'] , 403);
-        
+            return response(['error' => 'Forbidden'] , 403);
+
         return $next($request);
     }
 }
