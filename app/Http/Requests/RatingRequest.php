@@ -24,7 +24,8 @@ class RatingRequest extends FormRequest
     public function rules()
     {
         return [
-            ''
+            'text' => 'required|string|min:20',
+            'photo' => 'image|required|mimes:jpg,png'
         ];
     }
 }
