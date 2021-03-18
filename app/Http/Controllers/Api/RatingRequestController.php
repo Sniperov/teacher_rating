@@ -4,23 +4,25 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\RatingRequest;
+use App\Http\Requests\RatingRequestRequest;
+use Illuminate\Support\Str;
 
 class RatingRequestController extends Controller
 {
 
-    public function createRequest(Request $request)
+    public function createRequest(RatingRequestRequest $request)
     {
       $data = $request->validated();
 
       if($request->hasFile('photo')) {
-        $ext = $request->file('icon')->getClientOriginalExtension();
+        $ext = $request->file('photo')->getClientOriginalExtension();
         $filename = (string) Str::uuid();
         if($ext) {
           $ext = mb_strtolower($ext);
           $filename = "{$filename}.{$ext}";
         }
         $request->file('photo')->storeAs('public/images', $filename);
-        $data['icon'] = "public/images/{$filename}";
+        $data['photo'] = "public/images/{$filename}";
       }
 
       RatingRequest::create(
