@@ -9,6 +9,7 @@ Route::group(['namespace'  => 'Api', 'prefix' => '/'], function () {
   Route::middleware(['auth'])->group(function(){
     Route::get('/profile', 'AuthController@me');
     Route::delete('/logout', 'AuthController@logout');
+    Route::post('/request/create', 'RatingRequestController@createRequest');
   });
 
   Route::middleware([isModerator::class])->group(function(){
